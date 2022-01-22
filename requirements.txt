@@ -1,0 +1,7 @@
+aiogram<3.0
+environs~=8.0.0
+dnspython==2.2.0
+youtube-search-python==1.5.3
+numpy==1.19.5
+Pillow==8.3.2
+telegraph==2.1.0
