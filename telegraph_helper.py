@@ -8,7 +8,7 @@ def create_page(datas):
     
     article = '<img src="{}"/>'.format(image[0]['src'])
     for data in datas:
-        article += '<figure><iframe src="/embed/youtube?url={}"></iframe></figure>'.format( data['url'])
+        article += '<figure><iframe src="/embed/youtube?url={}?autoplay=0&showinfo=0&controls=0"></iframe></figure>'.format( data['url'])
     article += "<a href='{}'>...</a>"
 
     response = telegraph.create_page(
