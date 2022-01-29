@@ -47,9 +47,9 @@ async def movies_list(message):
                             allows_multiple_answers=True,
                             type='regular'
                             )
-        tmdb_helper.get_large_poster(movie_titles)
+        tmdb_helper.get_large_poster([title.split("/")[1].strip() for title in movie_titles if '/' in title])
         post_link = telegraph_helper.create_page(prepare_page_data(movie_titles))
-        await message.answer("<a href='{}'>Ссылка на трейлеры</a>".format(post_link),parse_mode='HTML')
+        await bot.send_message(message.chat.id, "<a href='{}'>Ссылка на трейлеры</a>".format(post_link),parse_mode='HTML')
     except Exception as e:
         await message.answer(e)
         
@@ -59,7 +59,7 @@ async def movies_list(message):
 async def handle_poll (message):   
     try:
         movie_titles = [ x.text for x in message.poll.options]
-        tmdb_helper.get_large_poster(movie_titles)
+        tmdb_helper.get_large_poster([title.split("/")[1].strip() for title in movie_titles if '/' in title])
         post_link = telegraph_helper.create_page(prepare_page_data(movie_titles))
         print(post_link)
         await message.answer("<a href='{}'>Ссылка на трейлеры</a>".format(post_link),parse_mode='HTML')
@@ -71,7 +71,7 @@ async def handle_poll (message):
 
 @dp.message_handler(commands=['start'])
 async def start(message):
-    await message.answer("Hello, I'm Trailer Bot v2.0! \n It's the same bot, but completely rewritten and running much faster than ever!")
+    await message.answer("Hello, I'm Trailer Bot v2.1! \n\n It's the same bot, but completely rewritten\nand running much faster than ever!")
 
 async def on_startup(dispatcher):
     await bot.set_webhook(WEBHOOK_URL)
